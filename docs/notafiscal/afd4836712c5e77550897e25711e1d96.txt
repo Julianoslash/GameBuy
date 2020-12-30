@@ -1,0 +1,48 @@
+--------------------- ShopBuy --------------------
+
+Nota Fiscal Nº afd4836712c5e77550897e25711e1d96
+
+--------------------------------------------------
+
+--- Produto 1 ---
+- Prduto: Far Cry Primal
+- Categoria: xbox
+- Valor Unitario: 89,90
+- Qtd.: 3
+- Valor final: 267,00
+
+--- Produto 2 ---
+- Prduto: Jogo Batlefield 1
+- Categoria: playstation
+- Valor Unitario: 129,90
+- Qtd.: 1
+- Valor final: 129,00
+
+--- Produto 3 ---
+- Prduto: Console Nintendo Switch
+- Categoria: consoles
+- Valor Unitario: 1799,90
+- Qtd.: 1
+- Valor final: 1799,00
+
+--------------------------------------------------
+
+--- Dados da compra ---
+
+Total de Produtos: 3
+Valor total: R$ 2195,00
+Total de Parcelas: 4x de R$ 548,75
+
+--------------------------------------------------
+
+--- Dados do comprador ---
+
+Nome: ﻿Juliano Machado
+Email: juliano@gmail.com
+Endereço: Avenida Olavo Porto
+Bairro: Portos
+Cidade: Charqueadas
+
+Compra feita as 16:41:56hrs, do dia 06, de January, de 2020
+
+--------------------------------------------------

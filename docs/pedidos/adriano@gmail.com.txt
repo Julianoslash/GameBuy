@@ -1,0 +1,18 @@
+Pedido 1
+Dados da compra
+Total de Produtos: 2
+Valor total: R$ 2166,00
+Total de Parcelas: 4x de R$ 541,50
+Produto 1
+Far Cry Primal;3;Jogo mais animal do ano.;89,90;xbox;./uploads/produtos/xbox/324a85f4a68f3fa58c9e61c907523e05.jpg
+Produto 2
+Console Playstation 4;1;Console PS4 da Sony, para quem gosta de jogatina.;1899,90;consoles;./uploads/produtos/consoles/ca64a0567cad2c0a59ba3f860658cb67.jpg
+Fim do pedido
+Pedido 2
+Dados da compra
+Total de Produtos: 1
+Valor total: R$ 89,00
+Total de Parcelas: 1x de R$ 89,00
+Produto 1
+Far Cry Primal;1;Jogo mais animal do ano.;89,90;xbox;./uploads/produtos/xbox/324a85f4a68f3fa58c9e61c907523e05.jpg
+Fim do pedido

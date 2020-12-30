@@ -1,0 +1,41 @@
+--------------------- ShopBuy --------------------
+
+Nota Fiscal Nº d5cfead94f5350c12c322b5b664544c1
+
+--------------------------------------------------
+
+--- Produto 1 ---
+- Prduto: Far Cry Primal
+- Categoria: xbox
+- Valor Unitario: 89,90
+- Qtd.: 3
+- Valor final: 267,00
+
+--- Produto 2 ---
+- Prduto: Console Playstation 4
+- Categoria: consoles
+- Valor Unitario: 1899,90
+- Qtd.: 1
+- Valor final: 1899,00
+
+--------------------------------------------------
+
+--- Dados da compra ---
+
+Total de Produtos: 2
+Valor total: R$ 2166,00
+Total de Parcelas: 4x de R$ 541,50
+
+--------------------------------------------------
+
+--- Dados do comprador ---
+
+Nome: Adraino Machado
+Email: adriano@gmail.com
+Endereço: Avenida Olavo Porto
+Bairro: Portos
+Cidade: Charqueadas
+
+Compra feita as 19:36:40hrs, do dia 06, de January, de 2020
+
+--------------------------------------------------

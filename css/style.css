@@ -1,0 +1,436 @@
+body{
+	font-family: 'Roboto', sans-serif;
+	margin: 0 auto;
+	overflow: auto;
+	text-indent: 15px;
+}
+
+/*header*/
+.wraphead{
+	border-bottom: 5px solid #708090;
+	text-align: center;
+}
+header{
+	background: #4682B4;
+	float: left;
+	box-sizing: border-box;
+	border: none;
+	padding: 0px;
+	margin: 0px;
+	color: orange;
+	font-size: 25px;
+}
+.logo{
+	width: 150px;
+}
+.logo2{
+	width: 100px;
+}
+
+/*nav*/
+.wrapnav{
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+.right{
+	float: right;
+}
+.left{
+	float: left;
+}
+
+nav{ 
+	margin-top: 8px;
+	text-align: center;
+}
+nav a{
+	display: inline-block;
+	color: orange;
+}
+.efeito{
+	border: none;
+	padding: 10px;
+	margin: 0px;
+	font-size: 15px;
+	line-height: 0px;
+	box-sizing: border-box;
+	color: orange;
+}
+.efeito:hover{
+	/*background: rgba(100, 100, 100, 0.7);*/
+}
+
+a{
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: underline;	
+}
+
+.MJ{
+	background-color: orange;
+	border-radius: 10px;
+}
+.PR{
+	background-color: grey;
+	border-radius: 10px;
+}
+.PS{
+	background-color: #1E90FF;
+	border-radius: 10px;
+}
+.XBOX{
+	background-color: #3CB371; 
+	color: white;
+	border-radius: 10px;
+}
+.NS{
+	background-color: #FF6347;
+	border-radius: 10px;
+}
+.CO{
+	background-color: black;
+	color: white;
+	border-radius: 10px;
+}
+
+.ps{
+	border-bottom: 5px solid #1E90FF;
+}
+
+.xbox{
+	border-bottom: 5px solid #3CB371;
+}
+
+.nintendo{
+	border-bottom: 5px solid #FF6347;
+}
+
+.pc{
+	border-bottom: 5px solid black;
+}
+
+/*busca*/
+.search{
+	margin-top: 10px;
+}
+.busca{
+	border: 2px solid #4682B4;
+	border-radius: 10px;
+	padding: 5px;
+}
+.busca:hover{
+	border: 2px solid #4682B4;
+	-webkit-box-shadow: 0px 0px 5px #4195fc;
+       -moz-box-shadow: 0px 0px 5px #4195fc;
+            box-shadow: 0px 0px 5px #4195fc;
+}
+.caixabusca{
+	border: none;
+	font-size: 20px;
+	width: 100%;
+	height: 40px;
+}
+
+.caixabusca:focus{
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+}
+
+.ok{
+	background-color: white;
+	border: none;
+	width: 50%;
+}
+.imgbusca{
+	width: 120%;
+}
+.imgbusca:hover{
+	/*border: 1px solid orange;*/
+	border-radius: 20px;
+	-webkit-box-shadow: 0px 0px 5px orange;
+       -moz-box-shadow: 0px 0px 5px orange;
+            box-shadow: 0px 0px 5px orange;
+}
+
+.shop{
+	margin-top: 15px;
+}
+
+.shop2 button{
+	background: white;
+	color: orange;
+}
+
+.shop2 button:hover{
+	border-radius: 30px;
+	-webkit-box-shadow: 0px 0px 10px #4195fc;
+       -moz-box-shadow: 0px 0px 10px #4195fc;
+            box-shadow: 0px 0px 10px #4195fc;
+}
+
+.num{
+	width: 60px;
+	height: 60px;
+	border: none;
+}
+.shopin{
+	margin-left: 5px;
+	width: 70%;
+	height: 40px;
+}
+.shopcar{
+	margin-right: 20px;
+	width: 100%;
+}
+
+/*imagem do login*/
+.logadoimg{
+	margin-top: 2px;
+	margin-left: 20px;
+	float: left;
+	border: 2px solid #4682B4;
+	width: 60px;
+	height: 60px;
+	border-radius: 60px;
+	object-fit: cover;
+}
+.logadoimg:hover{
+	-webkit-box-shadow: 0px 0px 7px #4195fc;
+       -moz-box-shadow: 0px 0px 7px #4195fc;
+            box-shadow: 0px 0px 7px #4195fc;
+}
+.nome{
+	text-align: center;
+}
+
+/*menu suspenso*/
+.dropdown {
+	
+}
+.dropdown-child {
+	min-width: 150px;
+	text-align: left;
+	border: 2px solid #4682B4;
+	border-radius: 10px;
+	display: none;
+	background-color: white;
+}
+.dropdown-child a {
+	color: #4682B4;
+	padding: 5px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-child a:hover {
+	text-decoration: underline;
+}
+.dropdown:hover .dropdown-child {
+	display: block;
+}
+
+/*content*/
+.wrapcontent{
+	padding-left: 5%;
+	padding-right: 5%;
+}
+.content{
+	border: 1px solid grey;
+	border-radius: 10px;
+	float: left;
+	width: 80%;
+	margin-left: 7%;
+	margin-top: 10px;
+	padding: 10px;
+}
+content h2{
+	padding: 10px;
+	border-bottom: 1px solid black;
+	font-size: 20px;
+}
+content img{
+	float: left;
+	border-radius: 10px;
+}
+.jogo{
+	padding: 10px;
+	border: 2px solid grey;
+
+}
+.jogo:hover{
+	-webkit-box-shadow: 0px 0px 15px #4682B4;
+       -moz-box-shadow: 0px 0px 15px #4682B4;
+            box-shadow: 0px 0px 15px #4682B4;
+}
+
+/*cards*/
+.valuecard{
+	margin-left: 22%;
+}
+.valuecard button{
+	font-size: 20px;
+	border: 2px solid #4682B4;
+	width: 100px;
+	height: 50px;
+	border-radius: 10px;
+}
+.valuecard button:hover{
+	color: orange;
+	-webkit-box-shadow: 0px 0px 10px #4682B4;
+       -moz-box-shadow: 0px 0px 10px #4682B4;
+            box-shadow: 0px 0px 10px #4682B4;
+}
+
+/*imagens pagina inicial*/
+.home{
+	width: 80%;
+	margin-left: 10%;
+}
+.img2{
+	display: inline-block;
+	width: 30%;
+	margin-left: 20px;
+}
+
+/*footer*/
+.footer{
+	background-color: #4682B4;
+	margin-top: 10px;
+	border-top: 5px solid #708090;
+	padding-left: 10%;
+	padding-right: 10%;
+	bottom: 0px;
+}
+footer{
+	color: orange;
+	text-align: center;
+}
+footer .asign{
+	border-bottom: 1px black solid;
+	margin-bottom: 10px;
+}
+footer content{
+	padding: 5px;
+	border-right: 1px solid grey;
+}
+footer content:last-child{
+	border: none;
+}
+
+/*grid 99.96%*/
+.linha{
+	width: 99.96%;
+	margin: 0 auto;
+	overflow: auto;
+	padding: 0px;
+}
+.linha::after{
+	content: "";
+	display: block;
+	clear: both;
+}
+.coluna{
+	float: left;
+}
+.col1{
+	width: 8.33%;
+	box-sizing: border-box;
+}
+.col2{
+	width: 16.66%;
+	box-sizing: border-box;
+}
+.col3{
+	width: 24.99%;
+	box-sizing: border-box;
+}
+.col4{
+	width: 33.32%;
+	box-sizing: border-box;
+}
+.col5{
+	width: 41.65%;
+	box-sizing: border-box;
+}
+.col6{
+	width: 49.98%;
+	box-sizing: border-box;
+}
+.col7{
+	width: 58.31%;
+	box-sizing: border-box;
+}
+.col8{
+	width: 66.64%;
+	box-sizing: border-box;
+}
+.col9{
+	width: 74.97%;
+	box-sizing: border-box;
+}
+.col10{
+	width: 83.3%;
+	box-sizing: border-box;
+}
+.col11{
+	width: 91.63%;
+	box-sizing: border-box;
+}
+.col12{
+	width: 99.96%;
+	box-sizing: border-box;
+}
+
+/*login e cadastro*/
+.formlogcad{
+	margin-top: 50px;
+	padding: 10px;
+}
+.formlogcad h3{
+	margin-left: 5%;
+	margin-right: 5%;
+	padding-bottom: 3%;
+	border-bottom: 1px solid black;
+}
+.formlogcad form{
+	margin-left: 10%;
+}
+
+.logcad{
+	width: 80%;
+	border: 2px solid black;
+	border-radius: 10px;
+	margin-left: 10%;
+	margin-right: 10%;
+}
+.logcad:hover{
+	-webkit-box-shadow: 0px 0px 10px #4682B4;
+       -moz-box-shadow: 0px 0px 10px #4682B4;
+            box-shadow: 0px 0px 10px #4682B4;
+}
+
+.sublogcad{
+	font-size: 15px;
+	margin-left: 33%;
+	border: 1px solid #4682B4;
+	border-radius: 5px;
+	width: 100px;
+	height: 30px;
+}
+.sublogcad:hover{
+	-webkit-box-shadow: 0px 0px 10px #4682B4;
+       -moz-box-shadow: 0px 0px 10px #4682B4;
+            box-shadow: 0px 0px 10px #4682B4;
+}
+
+.center{
+	text-align: center;
+}
+
+/*Warning*/
+.warning p{
+	color: red; 
+}

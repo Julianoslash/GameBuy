@@ -1,0 +1,3 @@
+Adraino Machado;adriano@gmail.com;123;1991-05-29;Avenida Olavo Porto;Portos;Charqueadas;1fbf9325124fd7788135ec6ba9cccaf6.jpg
+Adraino;adriano@gmail.com;123;1991-05-29;Avenida Olavo Porto;Portos;Charqueadas;1fbf9325124fd7788135ec6ba9cccaf6.jpg
+juliano;juliano@gmail.com;123;0899-08-21;WRER;RTRT;TRTRT;ba3866600c3540f67c1e9575e213be0a.jpg

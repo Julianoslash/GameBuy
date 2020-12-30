@@ -1,0 +1,12 @@
+Pedido 1
+Dados da compra
+Total de Produtos: 3
+Valor total: R$ 2195,00
+Total de Parcelas: 4x de R$ 548,75
+Produto 1
+Far Cry Primal;3;Jogo mais animal do ano.;89,90;xbox;./uploads/produtos/xbox/324a85f4a68f3fa58c9e61c907523e05.jpg
+Produto 2
+Jogo Batlefield 1;1;Jogo da primeira guerra mundial da EA games, jogo modo historia e cooperativo online.;129,90;playstation;./uploads/produtos/playstation/afb40102f3ddad52157eb276ec5bd7df.jpg
+Produto 3
+Console Nintendo Switch;1;Conole mais legal da atual geração, de mesa e portatil, para jogar onde quiser.;1799,90;consoles;./uploads/produtos/consoles/5bb82112a461be8cd889889c132719d6.jpg
+Fim do pedido
