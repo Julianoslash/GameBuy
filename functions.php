@@ -2,6 +2,7 @@
 	if(!isset($_SESSION)){
 		session_start();
 	}
+	include('conexao.php');
 
 	function adm($email, $senha){
 		$admEmail = "juliano@yahoo.com.br";
@@ -17,73 +18,79 @@
 		}
 	}
 
-	function testCadastro($email){
-
-		$arqlog = fopen('./docs/cadastro/arqcad.txt', 'r');
-
-		$dados = array();
-
-		if(adm($email, 123) == 1){
-			return 0;
+	function edit($string, $oper){
+		switch($oper){
+			case 0:
+				editar($string, "nome");
+				break;
+			case 1:
+				editar($string, "rua");
+				break;
+			case 2:
+				editar($string, "numero");
+				break;
+			case 3:
+				editar($string, "bairro");
+				break;
+			case 4:
+				editar($string, "cidade");
+				break;
+			case 5:
+				editar($string, "cep");
+				break;
+			case 6:
+				editar($string, "estado");
+				break;
 		}
-
-		while(true){
-
-			$logdados = fgets($arqlog);
-			if($logdados == null) break;
-
-			$dados = explode(";", $logdados);
-
-			if($dados[1] == $email){
-				fclose($arqlog);
-				
-				return 0;
-			}
-		}
-
-		fclose($arqlog);
-
-		return 1;
-
 	}
 
-	function cadastro($nome, $email, $senha, $senha2, $date, $ender, $bairro, $city, $file){
-
-		$cadastro = array();
-
-		$cadastro[] = $nome.";";
-		$cadastro[] = $email.";";
-		$cadastro[] = $senha.";";
-		$cadastro[] = $date.";";
-		$cadastro[] = $ender.";";
-		$cadastro[] = $bairro.";";
-		$cadastro[] = $city.";";
-		$cadastro[] = $file."\r\n";
-
-		if($senha != $senha2){
-			return 0;
+	function editar($string, $dest){
+		$ucfirst = ucfirst($dest);
+		echo "<p>$ucfirst:</p>";
+		echo "<p>$string</p>";
+		$post = $dest."Edit";
+		$salvar = $dest."Salvar";
+		if(isset($_POST[$post])){
+			echo "<form method='post' action='userEdit1.php'>";
+			echo "<p>Digite outro {$dest}:</p>";
+			echo "<input type='text' name='{$dest}'>";
+			echo "<input class='user2' type='submit' class='user' value='salvar' name='{$salvar}'>";
+			echo "</form>";
+		}else{
+			echo "<form method='post' action='usuario.php'>";
+			echo "<input class='user' type='submit' value='Editar' name='{$post}'>";
+			echo "</form>";
 		}
+	}
 
-		$arqcad = fopen('./docs/cadastro/arqcad.txt', 'a+');
-		if ($arqcad == false) die('ERRO 01.');
-
-		foreach ($cadastro as $key => $value) {
-			fwrite($arqcad, $value);
+	function editSenha(){
+		echo "<p>Editar Senha:</p>";
+		if(isset($_POST["editarSenha"])){
+			echo "<form method='post' action='userEdit1.php'>";
+			echo "<p>Digite uma senha:</p>";
+			echo "<input type='password' name='senhaEdit1'>";
+			echo "<input type='password' name='senhaEdit2'>";
+			echo "<input class='user2' type='submit' class='user' value='salvar' name='salvarSenha'>";
+			echo "</form>";
+		}else{
+			echo "<form method='post' action='usuario.php'>";
+			echo "<input class='user' type='submit' value='Editar' name='editarSenha'>";
+			echo "</form>";
 		}
+	}
 
-		fclose($arqcad);
-
-		login($email, $senha);
-
-		ordenar();
-
-		newShopList($email);
-
-		return 1;
+	function testUpdate(){
+		if($_SESSION['update'] == 2){
+			echo "Senha 1 nao é igual a senha 2!";
+		}elseif ($_SESSION['update'] == 1) {
+			echo "Alteração feita com sucesso!!";
+		}elseif ($_SESSION['update'] == 0) {
+			echo "Não foi possivel alterar campo";
+		}
+		unset($_SESSION['update']);
 	}
 
 	function newShopList($email){
-
 		if(!file_exists("./docs/shoplist/".$email.".txt")){
 			$arquivo = fopen("./docs/shoplist/".$email.".txt", "a+");
 			if($arquivo == false) die("ERRO AO CRIAR O ARQUIVO");
@@ -97,7 +104,6 @@
 		}
 
 		return 0;
-
 	}
 
 	function user($nome, $email, $senha, $date, $ender, $bairro, $city, $file){

@@ -434,3 +434,41 @@ footer content:last-child{
 .warning p{
 	color: red; 
 }
+
+.user_2 fieldset{
+	
+}
+
+.user_2 fieldset:hover{
+	background-color: grey;
+}
+
+.user{
+	font-size: 13px;
+	margin-left: 32%;
+	border: 1px solid #4682B4;
+	border-radius: 5px;
+	width: 70px;
+	height: 20px;
+}
+
+.user:hover{
+	-webkit-box-shadow: 0px 0px 10px #4682B4;
+       -moz-box-shadow: 0px 0px 10px #4682B4;
+            box-shadow: 0px 0px 10px #4682B4;
+}
+
+.user2{
+	font-size: 13px;
+	margin-left: 15%;
+	border: 1px solid #4682B4;
+	border-radius: 5px;
+	width: 70px;
+	height: 20px;
+}
+
+.user2:hover{
+	-webkit-box-shadow: 0px 0px 10px #4682B4;
+       -moz-box-shadow: 0px 0px 10px #4682B4;
+            box-shadow: 0px 0px 10px #4682B4;
+}

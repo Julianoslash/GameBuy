@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	
+
 ?>
 
 <!DOCTYPE  html>
@@ -14,7 +14,6 @@
 	</head>
 
 	<body>
-
 		<!--header-->
 		<div class="linha wraphead">
 			<header class="col12">

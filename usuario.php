@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	include('functions.php');
 
 	$nome = $_SESSION['nome'];
 	$foto = $_SESSION['file'];
@@ -115,21 +116,76 @@
 						<div class="clo12 logcad">
 							<h3>Minha Conta</h3>
 
-							<form method="post" action="./userEdit.php">
+							<form method="post" action="">
 								<?php
 									echo "<p><br><img clas='userImg' src='./uploads/cadastro/$foto'></p>";
-									echo "<p>Nome: $nome</p>";
-									echo "<p>Email: $email</p>";
-									echo "<p>Rua: $rua</p>";
-									echo "<p>Numero: $num</p>";
-									echo "<p>Bairro: $bairro</p>";
-									echo "<p>Cidade: $cidade</p>";
-									echo "<p>Cep: $cep</p>";
-									echo "<p>Estado: $estado</p>";
 								?>
-								<input class="sublogcad" type="submit" value="Editar">
+								<input class="sublogcad" type="submit" value="fotoEdit">
 							</form>
-
+							<fieldset class='user_2'>
+								<?php
+									editSenha();
+									if(isset($_SESSION['update'])){
+										testUpdate();
+									}
+								?>
+							</fieldset>
+							<fieldset class='user_2'>
+								<?php
+									edit($nome, 0);
+									if(isset($_SESSION['update'])){
+										testUpdate();
+									}
+								?>
+							</fieldset>
+							<fieldset class='user_2'>
+								<?php
+									edit($rua, 1);
+									if(isset($_SESSION['update'])){
+										testUpdate();
+									}
+								?>
+							</fieldset>
+							<fieldset class='user_2'>
+								<?php
+									edit($num, 2);
+									if(isset($_SESSION['update'])){
+										testUpdate();
+									}
+								?>
+							</fieldset>
+							<fieldset class='user_2'>
+								<?php
+									edit($bairro, 3);
+									if(isset($_SESSION['update'])){
+										testUpdate();
+									}
+								?>
+							</fieldset>
+							<fieldset class='user_2'>
+								<?php
+									edit($cidade, 4);
+									if(isset($_SESSION['update'])){
+										testUpdate();
+									}
+								?>
+							</fieldset>
+							<fieldset class='user_2'>
+								<?php
+									edit($cep, 5);
+									if(isset($_SESSION['update'])){
+										testUpdate();
+									}
+								?>
+							</fieldset>
+							<fieldset class='user_2'>
+								<?php
+									edit($estado, 6);
+									if(isset($_SESSION['update'])){
+										testUpdate();
+									}
+								?>
+							</fieldset>
 						</div>
 					</div>
 

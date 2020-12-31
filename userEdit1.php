@@ -1,65 +1,79 @@
 <?php
 	session_start();
 	include('conexao.php');
+	include('functions.php');
 
+	$user = $_SESSION['email'];
+	$result = 0;
+	$session = "";
 
-	/*if(empty($_POST['cademail']) || empty($_POST['cadpassword'])){
-		echo "teste 3";
-		header('LOCATION: cadastro.php');
-		exit();
-	}*/
-	
-	if(isset($conexao, $_POST['cadnome'])){
-		$query = "select email from clientes where email = '{$email}'";
-	}
-
-	$nome = mysqli_real_escape_string($conexao, $_POST['cadnome']);
-	$email = mysqli_real_escape_string($conexao, $_POST['cademail']);
-	$senha = mysqli_real_escape_string($conexao, $_POST['cadpassword']);
-	$senha2 = mysqli_real_escape_string($conexao, $_POST['cadpassword2']);
-	$rua = mysqli_real_escape_string($conexao, $_POST['cadrua']);
-	$num = mysqli_real_escape_string($conexao, $_POST['cadnum']);
-	$bairro = mysqli_real_escape_string($conexao, $_POST['cadbairro']);
-	$cidade = mysqli_real_escape_string($conexao, $_POST['cadcidade']);
-	$estado = mysqli_real_escape_string($conexao, $_POST['cadestado']);
-	$cep = mysqli_real_escape_string($conexao, $_POST['cadcep']);
-
-	if(isset($_FILES["arquivo"])){
-		$nome_temporario = $_FILES["arquivo"]["tmp_name"];
-		echo $nome_temporario."\n";
-		$foto = md5($_FILES["arquivo"]["name"].rand(1,999)).".jpg";
-		echo $foto."\n";
-		copy($nome_temporario,"./uploads/cadastro/$foto");
-	}
-
-	$query = "select email from clientes where email = '{$email}'";
-	$result = mysqli_query($conexao, $query);
-	$row = mysqli_num_rows($result);
-
-	if($row == 1){
-		$_SESSION['teste'] = 1;
-		header('LOCATION: cadastro.php');
-		exit();
-	} else if($senha != $senha2){
-		echo "teste 2";
-		$_SESSION['teste'] = 2;
-		header('LOCATION: cadastro.php');
-		exit();
-	}else if($row == 0){
-		$_SESSION['nome'] = $nome;
-		$_SESSION['file'] = $foto;
-		$_SESSION['email'] = $email;
-		$_SESSION['rua'] = $rua;
-		$_SESSION['num'] = $num;
-		$_SESSION['bairro'] = $bairro;
-		$_SESSION['cidade'] = $cidade;
-		$_SESSION['estado'] = $estado;
-		$_SESSION['cep'] = $cep;
-		$_SESSION['senha'] = $senha;
-
-		$query = "insert into clientes(nome, email, senha, rua, numero, bairro, cidade, cep, estado, foto) 
-			values ('{$nome}', '{$email}', '{$senha}', '{$rua}', '{$num}', '{$bairro}', '{$cidade}', '{$cep}', '{$estado}', '{$foto}')";
+	if(isset($_POST['nome'])){
+		$session = "nome";
+		$valor = $_POST['nome'];
+		$query = "update clientes set nome = '{$valor}' where Email like '{$user}'";
 		$result = mysqli_query($conexao, $query);
-		header('LOCATION: cadend.php');
+	}
+	if(isset($_POST['rua'])){
+		$session = "rua";
+		$valor = $_POST['rua'];
+		$query = "update clientes set rua = '{$valor}' where Email like '{$user}'";
+		$result = mysqli_query($conexao, $query);
+	}
+	if(isset($_POST['numero'])){
+		$session = "num";
+		$valor = $_POST['numero'];
+		$query = "update clientes set numero = '{$valor}' where Email like '{$user}'";
+		$result = mysqli_query($conexao, $query);
+	}
+	if(isset($_POST['bairro'])){
+		$session = "bairro";
+		$valor = $_POST['bairro'];
+		$query = "update clientes set bairro = '{$valor}' where Email like '{$user}'";
+		$result = mysqli_query($conexao, $query);
+	}
+	if(isset($_POST['cidade'])){
+		$session = "cidade";
+		$valor = $_POST['cidade'];
+		$query = "update clientes set cidade = '{$valor}' where Email like '{$user}'";
+		$result = mysqli_query($conexao, $query);
+	}
+	if(isset($_POST['cep'])){
+		$session = "cep";
+		$valor = $_POST['cep'];
+		$query = "update clientes set cep = '{$valor}' where Email like '{$user}'";
+		$result = mysqli_query($conexao, $query);
+	}
+	if(isset($_POST['estado'])){
+		$session = "estado";
+		$valor = $_POST['estado'];
+		$query = "update clientes set estado = '{$valor}' where Email like '{$user}'";
+		$result = mysqli_query($conexao, $query);
+	}
+
+	if(isset($_POST['senhaEdit1']) && isset($_POST['senhaEdit2'])){
+		if($_POST['senhaEdit1'] == $_POST['senhaEdit2']){
+			$valor = $_POST['senhaEdit1'];
+			$query = "update clientes set senha = '{$valor}' where Email like '{$user}'";
+			$result = mysqli_query($conexao, $query);
+		}else{
+			$_SESSION['update'] = 2;
+			header('LOCATION: usuario.php');
+			exit();
+		}
+	}
+
+	if($result == 1){
+		if($_POST['senhaEdit1']){
+			$_SESSION['update'] = 1;
+			header('LOCATION: usuario.php');
+			exit();
+		}
+		$_SESSION['update'] = 1;
+		$_SESSION[$session] = $valor;
+		header('LOCATION: usuario.php');
+		exit();
+	}else{
+		$_SESSION['update'] = 0;
+		header('LOCATION: usuario.php');
 		exit();
 	}

@@ -51,7 +51,6 @@
 		$_SESSION['cidade'] = $cidade;
 		$_SESSION['estado'] = $estado;
 		$_SESSION['cep'] = $cep;
-		$_SESSION['senha'] = $senha;
 
 		$query = "insert into clientes(nome, email, senha, rua, numero, bairro, cidade, cep, estado, foto) 
 			values ('{$nome}', '{$email}', '{$senha}', '{$rua}', '{$num}', '{$bairro}', '{$cidade}', '{$cep}', '{$estado}', '{$foto}')";
