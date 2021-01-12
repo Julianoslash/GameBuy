@@ -1,41 +1,20 @@
 <?php
-	include './functionAdm.php';
+	include('./functionAdm.php');
+	include('../page.php');
+	include('../conexao.php');
 
 	$admName = $_SESSION['adm'];
 	$img = $_SESSION['admImg'];
 
-	$test1 = 0;
+	$query1 = "select * from categoria";
+	$result1 = mysqli_query($conexao, $query1);
 
-
-	if(isset($_POST['prodCat']) && isset($_POST['prodName']) && isset($_POST['prodDesc']) && isset($_POST['prodPrice'])){
-
-		$cat = $_POST['prodCat'];
-		$name = $_POST['prodName'];
-		$desc = $_POST['prodDesc'];
-		$price = $_POST['prodPrice'];
-
-		$test1 = testCadProd($name, $cat);
-
-		if($test1 == 1){
-
-			if(isset($_FILES['prodFile'])){
-				$nome_temporario = $_FILES["prodFile"]["tmp_name"];
-				$nome_real = md5($_FILES["prodFile"]["name"].rand(1,999)).".jpg";
-				copy($nome_temporario,"../uploads/produtos/$cat/$nome_real");
-			}
-
-			cadProd($cat, $name, $desc, $price, $nome_real);
-			header('Location: ./admok.php');
-		}else{
-			echo "ERRO NO CADASTRO!!!!";
-		}
-	}
-
+	$query2 = "select * from marca";
+	$result2 = mysqli_query($conexao, $query2);
 ?>
 
 <!DOCTYPE  html>
 <html lang="pt-br">
-
 	<head>
 		<meta charset="utf-8" />
 		<title>HOME</title>
@@ -44,7 +23,6 @@
 	</head>
 
 	<body>
-
 		<!--header-->
 		<div class="linha wraphead">
 			<header class="col12">
@@ -81,7 +59,7 @@
 								echo "<img class='logadoimg' src='$img'/><br>";
 							?>
 							<div class="dropdown-child">
-								<a href="../index.php">Sair</a>
+								<a href="../index.php" onClick="">Sair</a>
 							</div>
 						</div>
 					</div>
@@ -123,28 +101,17 @@
 				<div class="coluna col12 formlogcad">
 
 					<div class="col3 left">
-						
+
 					</div>
 
 					<div class="col6 left">
 						<div class="clo12 logcad">
 							<h3>Cadastre um produto</h3>
 
-							<form enctype="multipart/form-data" method="post" action="./cadProdut.php">
-								<p>
-									Categoria<br>
-									<select name="prodCat" required>
-										<option></option>
-										<option>playstation</option>
-										<option>xbox</option>
-										<option>nintendo</option>
-										<option>consoles</option>
-									</select>
-								</p>
-
+							<form enctype="multipart/form-data" method="post" action="cadProdut1.php">
 								<p>
 									Nome do produto<br>
-									<input type="text" name="prodName" required>
+									<input type="text" name="prodNome" required>
 								</p>
 
 								<p>
@@ -154,12 +121,30 @@
 
 								<p>
 									Digite o valor do produto<br>
-									<input type="text" name="prodPrice" required>
+									<input type="text" name="prodPreco" required>
+								</p>
+
+								<p>
+									<?php
+										categoria($result1);
+									?>
+								</p>
+
+								<p>
+									Selecione a condição do porduto<br>
+									<input type="radio" name="prodCond" value='novo'><label for='novo'>Novo</label><br>
+									<input type="radio" name="prodCond" value='seminovo'><label for='seminovo'>Seminovo</label>
+								</p>
+
+								<p>
+									<?php
+										marca($result2);
+									?>
 								</p>
 
 								<p>
 									Escolha a imagem do produto<br>
-									<input type="file" name="prodFile" id="arquivo">
+									<input type="file" name="prodFoto" id="arquivo">
 								</p>
 
 								<p>
@@ -179,25 +164,9 @@
 
 		<!--footer-->
 		<div class="footer">
-			<footer class="linha">
-
-				<div class="coluna col12">
-					
-				</div>
-
-				<div class="coluna col12 asign">
-					<p><b>&#169;2019-Juliano Vieira</b></p>
-				</div>
-
-				<content class="coluna col12">
-					<p>Contato</p>
-					<p>Fone: (+55) 51 9999-9999</p>
-					<p>Whatsapp: (+55) 51 9999-9999</p>
-					<p>Cidade: Charqueadas</p>
-					<p>Estado: Rio Grande do Sul</p>
-					<p>País: Brasil</p>
-				</content>
-			</footer>
+			<?php 
+				footer();
+			?>
 		</div>
 
 	</body>

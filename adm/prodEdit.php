@@ -1,43 +1,27 @@
 <?php
-	include './functionAdm.php';
+	include ('./functionAdm.php');
+	include ('../conexao.php');
 
 	$adm = $_SESSION['adm'];
 	$img = $_SESSION['admImg'];
-	$teste = 0;
 
-	$name = $_SESSION['prodName'];
+	$nome = $_SESSION['prodNome'];
 	$desc = $_SESSION['prodDesc'];
-	$price = $_SESSION['prodPrice'];
-	$file = $_SESSION['prodFile'];
-	$cat = $_SESSION['prodCat'];
-	$local = "../uploads/produtos/$cat/$file";
+	$preco = $_SESSION['prodPreco'];;
+	$foto = $_SESSION['prodFoto'];
+	$cond = $_SESSION['prodCond'];
+	$cat = $_SESSION['prodIdCat'];
+	$marc = $_SESSION['prodIdMarc'];
+	$marca = $_SESSION['prodMarca'];
+	$categoria = $_SESSION['prodCat'];
 
-	if(isset($_POST['salvar'])){
+	$local = "../uploads/produtos/$foto";
 
-		if(isset($_POST['prodName'])){
-			$prodName = $_POST['prodName'];
-		}else{
-			$prodName = $name;
-		}
+	$query1 = "select * from categoria";
+	$result1 = mysqli_query($conexao, $query1);
 
-		if(isset($_POST['prodDesc'])){
-			$prodDesc = $_POST['prodDesc'];
-		}else{
-			$prodDesc = $desc;
-		}
-
-		if(isset($_POST['prodPrice'])){
-			$prodPrice = $_POST['prodPrice'];
-		}else{
-			$prodPrice = $price;
-		}
-
-		$teste = edit($cat, $prodName, $prodDesc, $prodPrice);
-
-		if($teste == 1){
-			header('Location: ./prodatu.php');
-		}
-	}
+	$query2 = "select * from marca";
+	$result2 = mysqli_query($conexao, $query2);
 ?>
 
 <!DOCTYPE  html>
@@ -51,7 +35,6 @@
 	</head>
 
 	<body>
-
 		<!--header-->
 		<div class="linha wraphead">
 			<header class="col12">
@@ -94,7 +77,7 @@
 								echo "<img class='logadoimg' src='$img'/><br>";
 							?>
 							<div class="dropdown-child">
-								<a href="../index.php">Sair</a>
+								<a href="../index.php" onClick="">Sair</a>
 							</div>
 						</div>
 					</div>
@@ -137,23 +120,7 @@
 		<div class="wrapcontent">
 			<div>
 				<?php
-					if($cat == "xbox"){
-						echo "<div class='col12 XBOX'>";
-							echo "<h2>Xbox One</h2>";
-						echo "</div>";
-					}elseif($cat == "playstation"){
-						echo "<div class='col12 PS'>";
-							echo "<h2>Playstation</h2>";
-						echo "</div>";
-					}elseif($cat == "nintendo"){
-						echo "<div class='col12 NS'>";
-							echo "<h2>Playstation</h2>";
-						echo "</div>";
-					}elseif($cat == "consoles"){
-						echo "<div class='col12 CO'>";
-							echo "<h2>Playstation</h2>";
-						echo "</div>";
-					}
+
 				?>
 
 				<div class="linha">
@@ -165,7 +132,7 @@
 								echo "</div>";
 
 								echo "<div class='coluna col12'>";
-									echo "<h2><b class='title'>".$name."</b></h2>";
+									echo "<h2><b class='title'>".$nome."</b></h2>";
 								echo "</div>";
 
 								echo "<div class='coluna col12'>";
@@ -173,12 +140,21 @@
 								echo "</div>";
 
 								echo "<div class='coluna col12'>";
-									echo "<h3><p class='title'>".$cat."</p></h3>";
+									echo "<h3><p class='title'>".$categoria."</p></h3>";
 								echo "</div>";
 
 								echo "<div class='coluna col12'>";
-									echo "<p>R$ ".$price."</p>";
+									echo "<p>R$ ".$preco."</p>";
 								echo "</div>";
+
+								echo "<div class='coluna col12'>";
+									echo "<h3><p class='title'>".$cond."</p></h3>";
+								echo "</div>";
+
+								echo "<div class='coluna col12'>";
+									echo "<h3><p class='title'>".$marca."</p></h3>";
+								echo "</div>";
+
 							echo "</div>";
 						echo "</content>";
 					?>
@@ -187,33 +163,163 @@
 						<div class="content jogo">
 							<h3>Editar dados do produto</h3>
 
-							<form enctype="multipart/form-data" method="post" action="./prodEdit.php">
-								<p>
-									Nome<br>
-									<?php
-										echo "<input type='text' name='prodName' value='$name' required>"
-									?>
-								</p>
+							<p>
+								<?php
+									echo "
+									<fieldset>
+										<p>Nome</p>
+										<form enctype='multipart/form-data' method='post' action='./prodEdit1.php'>
+											<p><input type='text' name='novoProdName' value=''></p>
+											<p><button class='sublogcad' type='submit' name='salvar' >Salvar
+											</button></p>
+										</form>";
+										if(isset($_SESSION['editProdError'])){
+											if($_SESSION['editProdError'] == 1){
+												echo "<p>Alteração feita com sucesso!</p>";
+											}elseif($_SESSION['editProdError'] == -1){
+												echo "<font color='red'><p>Campo não foi alterado!</p></font>";
+											}
+											unset($_SESSION['editProdError']);
+										}
+									echo "</fieldset>";
+								?>
+							</p>
 
-								<p>
-									Descrição<br>
-									<?php
-										echo "<textarea style='font-family: arial' cols='25' rows='5' value='$desc' name='prodDesc'>$desc</textarea> ";
-										
-									?>
-								</p>
+							<p>
+								<?php
+									echo "
+									<fieldset>
+										<p>Descrição</p>
+										<form enctype='multipart/form-data' method='post' action='./prodEdit1.php'>
+											<p><textarea style='font-family: arial' cols='25' rows='5' value='$desc' name='novProdDesc'>
+											</textarea></p>
+											<p><button class='sublogcad' type='submit' name='salvar' >Salvar
+											</button></p>
+										</form>";
+										if(isset($_SESSION['editProdError'])){
+											if($_SESSION['editProdError'] == 3){
+												echo "<p>Alteração feita com sucesso!</p>";
+											}elseif($_SESSION['editProdError'] == -3){
+												echo "<font color='red'><p>Campo não foi alterado!</p></font>";
+											}
+											unset($_SESSION['editProdError']);
+										}
+									echo "</fieldset>";
+								?>
+							</p>
 
-								<p>
-									Preço<br>
-									<?php
-										echo "<input type='text' name='prodPrice' value='$price' required>";
-									?>
-								</p>
+							<p>
+								<?php
+									echo "
+									<fieldset>
+										<p>Preço</p>
+										<form enctype='multipart/form-data' method='post' action='./prodEdit1.php'>
+											<p><input type='text' name='novoProdPreco' value=''></p>
+											<p><button class='sublogcad' type='submit' name='salvar' >Salvar
+											</button></p>
+										</form>";
+										if(isset($_SESSION['editProdError'])){
+											if($_SESSION['editProdError'] == 2){
+												echo "<p>Alteração feita com sucesso!</p>";
+											}elseif($_SESSION['editProdError'] == -2){
+												echo "<font color='red'><p>Campo não foi alterado!</p></font>";
+											}
+											unset($_SESSION['editProdError']);
+										}
+									echo "</fieldset>";
+								?>
+							</p>
 
-								<p>
-									<button class="sublogcad" type="submit" name="salvar" >Salvar</button>
-								</p>
-							</form>
+							<p>
+								<?php
+									echo "
+									<fieldset>
+										<form enctype='multipart/form-data' method='post' action='./prodEdit1.php'>
+										<p>
+									";
+									categoria($result1);
+									echo "
+										</p>
+											<p><button class='sublogcad' type='submit' name='salvar' >Salvar
+											</button></p>
+										</form>";
+										if(isset($_SESSION['editProdError'])){
+											if($_SESSION['editProdError'] == 4){
+												echo "<p>Alteração feita com sucesso!</p>";
+											}elseif($_SESSION['editProdError'] == -4){
+												echo "<font color='red'><p>Campo não foi alterado!</p></font>";
+											}
+											unset($_SESSION['editProdError']);
+										}
+									echo "</fieldset>";
+								?>
+							</p>
+
+							<p>
+								<?php
+									echo "
+									<fieldset>
+										<form enctype='multipart/form-data' method='post' action='./prodEdit1.php'>
+										<p>
+									";
+									marca($result2);
+									echo "
+										</p>
+											<p><button class='sublogcad' type='submit' name='salvar' >Salvar
+											</button></p>
+										</form>";
+										if(isset($_SESSION['editProdError'])){
+											if($_SESSION['editProdError'] == 5){
+												echo "<p>Alteração feita com sucesso!</p>";
+											}elseif($_SESSION['editProdError'] == -5){
+												echo "<font color='red'><p>Campo não foi alterado!</p></font>";
+											}
+											unset($_SESSION['editProdError']);
+										}
+									echo "</fieldset>";
+								?>
+							</p>
+
+							<p>
+								<fieldset>
+									<form enctype="multipart/form-data" method="post" action="./prodEdit1.php">
+											<p>Nova Condição</p>
+											<input type="radio" name="novoProdCond" value='novo'><label for='novo'>Novo</label><br>
+											<input type="radio" name="novoProdCond" value='seminovo'><label for='seminovo'>Seminovo</label>
+											<p><button class="sublogcad" type="submit" name="salvar" >Salvar</button></p>
+									</form>
+									<?php
+										if(isset($_SESSION['editProdError'])){
+											if($_SESSION['editProdError'] == 6){
+												echo "<p>Alteração feita com sucesso!</p>";
+											}elseif($_SESSION['editProdError'] == -6){
+												echo "<font color='red'><p>Campo não foi alterado!</p></font>";
+											}
+											unset($_SESSION['editProdError']);
+										}
+									?>
+								</fieldset>
+							</p>
+
+							<p>
+								<fieldset>
+									<form enctype="multipart/form-data" method="post" action="./prodEdit1.php">
+										<p>Nova Imagem</p>
+										<p><input type="file" name="novoProdFoto" id="arquivo"></p>
+										<p><button class="sublogcad" type="submit" name="salvar" >Salvar</button></p>
+									</form>
+									<?php 
+										if(isset($_SESSION['editProdError'])){
+											if($_SESSION['editProdError'] == 7){
+												echo "<p>Alteração feita com sucesso!</p>";
+											}elseif($_SESSION['editProdError'] == -7){
+												echo "<font color='red'><p>Campo não foi alterado!</p></font>";
+											}
+											unset($_SESSION['editProdError']);
+										}
+									?>
+								</fieldset>
+							</p>
 						</div>
 					</div>
 				</div>

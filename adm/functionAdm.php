@@ -2,225 +2,89 @@
 	if(!isset($_SESSION)){
 		session_start();
 	}
-	
-	function testCadProd($name, $cat){
 
-		if($cat == "nintendo"){
-			$arqlog = fopen('../docs/produtos/nintendo.txt', 'r');
-		}elseif($cat == "playstation"){
-			$arqlog = fopen('../docs/produtos/playstation.txt', 'r');
-		}elseif($cat == "xbox"){
-			$arqlog = fopen('../docs/produtos/xbox.txt', 'r');
-		}elseif($cat == "consoles"){
-			$arqlog = fopen('../docs/produtos/consoles.txt', 'r');
+	function categoria($result){
+		echo "
+			<p>Categoria:</p>
+			<select name='prodCat' required>
+			<option></option>
+		";
+		foreach ($result as $key => $value) {
+			$id = $value['idCategoria'];
+			$valor = $value['Categoria'];
+			echo "
+				<option value='$id'>{$valor}</option>
+			";
 		}
-
-		$dados = array();
-
-		while(true){
-
-			$logdados = fgets($arqlog);
-			if($logdados == null) break;
-
-			$dados = explode(";", $logdados);
-
-			if($dados[1] == $name){
-				fclose($arqlog);
-				
-				return 0;
-			}
-		}
-
-		fclose($arqlog);
-
-		return 1;
-
+		echo "</select>";
 	}
 
-	function cadProd($cat, $name, $desc, $price, $file){
-
-		$cad = array();
-
-		$cad[] = $name.";";
-		$cad[] = $desc.";";
-		$cad[] = $price.";";
-		$cad[] = $cat.";";
-		$cad[] = $file."\r\n";
-
-		if($cat == "nintendo"){
-			$arqcad = fopen('../docs/produtos/nintendo.txt', 'a+');
-		}elseif($cat == "playstation"){
-			$arqcad = fopen('../docs/produtos/playstation.txt', 'a+');
-		}elseif($cat == "xbox"){
-			$arqcad = fopen('../docs/produtos/xbox.txt', 'a+');
-		}elseif($cat == "consoles"){
-			$arqcad = fopen('../docs/produtos/consoles.txt', 'a+');
+	function marca($result){
+		echo "
+			<p>Marca:</p>
+			<select name='prodMarc' required>
+			<option></option>
+		";
+		foreach ($result as $key => $value) {
+			$id = $value['idMarca'];
+			$valor = $value['Marca'];
+			echo "
+				<option value='$id'>{$valor}</option>
+			";
 		}
-
-		if ($arqcad == false) die('ERRO 01.');
-
-		foreach ($cad as $key => $value) {
-			fwrite($arqcad, $value);
-		}
-
-		fclose($arqcad);
-
-		return 1;
+		echo "</select>";
 	}
 
-	function edit($cat, $name, $desc, $price){
-		$nameAnt = $_SESSION['prodName'];
-		$descAnt = $_SESSION['prodDesc'];
-		$priceAnt = $_SESSION['prodPrice'];
-		$fileAnt = $_SESSION['prodFile'];
-		$catAnt = $_SESSION['prodCat'];
+	function categoriaProd($result, $cat){
+		foreach ($result as $key => $value) {
+			$id = $value['idProdutos'];
+			$nome = $value['Nome'];
+			$desc = $value['Descricao'];
+			$preco = $value['Preco'];
+			$foto = $value['Foto'];
+			$condicao = $value['Condicao'];
+			$cat = $value['Cat'];
+			$marc = $value['Marc'];
 
-		$var = $name.";".$desc.";".$price.";".$cat.";".$fileAnt;
-
-		if($cat == "nintendo"){
-			$arqcad = fopen('../docs/produtos/nintendo.txt', 'r');
-		}elseif($cat == "playstation"){
-			$arqcad = fopen('../docs/produtos/playstation.txt', 'r');
-		}elseif($cat == "xbox"){
-			$arqcad = fopen('../docs/produtos/xbox.txt', 'r');
-		}elseif($cat == "consoles"){
-			$arqcad = fopen('../docs/produtos/consoles.txt', 'r');
+			cards2($nome, $desc, $preco, $cat, $foto, $id, $marc);
 		}
-
-		$dados = array();
-		$prod = array();
-		$i = 0;
-
-		do{
-			$cad = fgets($arqcad);
-			if($cad == null) break;
-
-			$dados[] = $cad;
-
-		}while($arqcad!=null);
-
-		fclose($arqcad);
-
-		if ($arqcad == false) die('ERRO 01.');
-
-		foreach ($dados as $key => $value) {
-			$prod = $prod = explode(";", $value);
-
-			if($prod[0] == $nameAnt && $prod[1] == $descAnt && $prod[2] == $priceAnt){
-
-				break;
-			}
-
-			$i++;
-
-		}
-
-		if($cat == "nintendo"){
-			$arqcad = fopen('../docs/produtos/nintendo.txt', 'w');
-		}elseif($cat == "playstation"){
-			$arqcad = fopen('../docs/produtos/playstation.txt', 'w');
-		}elseif($cat == "xbox"){
-			$arqcad = fopen('../docs/produtos/xbox.txt', 'w');
-		}elseif($cat == "consoles"){
-			$arqcad = fopen('../docs/produtos/consoles.txt', 'w');
-		}
-
-		if ($arqcad == false) die('ERRO 01.');
-
-		foreach ($dados as $key => $value) {
-			if($key == $i){
-				fwrite($arqcad, $var);
-			}else{
-				fwrite($arqcad, $value);
-			}
-		}
-
-		fclose($arqcad);
-
-		prodDados($name, $desc, $price, $cat, $fileAnt);
-
-		return 1;
 	}
 
-	function xbox(){
-		$xbox = fopen('../docs/produtos/xbox.txt', 'r');
+	function cards2($nome, $desc, $valor, $cat, $file, $id, $marc){
+		echo "<content class='coluna col3'>";
+			echo "<div class='content jogo'>";
+				echo "<div class='coluna col12'>";
+					echo "<img class='home' src='../uploads/produtos/$file'>";
+				echo "</div>";
 
-		$prod = array(array());
-		$i = 0;
+				echo "<div class='coluna col12'>";
+					echo "<h2><b class='title'>".$nome."</b></h2>";
+					echo "<p><b>".$cat."</b></p>";
+					echo "<p><b>".$marc."</b></p>";
+					echo "<p><b>".$desc."</b></p>";
+					echo "<p>R$ ".$valor."</p>";
+				echo "</div>";
 
-		while(true){
+				echo "<div class='coluna col12 valuecard'>";
+					echo "<form action='./adm.php' method='post'>";
+						echo "<p><button type='submit' name='editar' value='$id'>Editar</button>";
+					echo "</form></p>";
 
-			$dados = fgets($xbox);
-			if($dados == null) break;
-			$prod[$i] = explode(";", $dados);
-			$i++;
-		}
-
-		fclose($xbox);
-
-		return $prod;
+					echo "<form action='./adm.php' method='post'>";
+						echo "<p><button type='submit' name='excluir' value='$id'>Excluir</button></p>";
+					echo "</form>";
+				echo "</div>";
+			echo "</div>";
+		echo "</content>";
 	}
 
-	function playstation(){
-		$ps = fopen('../docs/produtos/playstation.txt', 'r');
-
-		$prod = array(array());
-		$i = 0;
-
-		while(true){
-
-			$dados = fgets($ps);
-			if($dados == null) break;
-			$prod[$i] = explode(";", $dados);
-			$i++;
-		}
-
-		fclose($ps);
-
-		return $prod;
-	}
-
-	function nintendo(){
-		$ns = fopen('../docs/produtos/nintendo.txt', 'r');
-
-		$prod = array(array());
-		$i = 0;
-
-		while(true){
-
-			$dados = fgets($ns);
-			if($dados == null) break;
-			$prod[$i] = explode(";", $dados);
-			$i++;
-		}
-
-		fclose($ns);
-
-		return $prod;
-	}
-
-	function consoles(){
-		$co = fopen('../docs/produtos/consoles.txt', 'r');
-
-		$prod = array(array());
-		$i = 0;
-
-		while(true){
-
-			$dados = fgets($co);
-			if($dados == null) break;
-			$prod[$i] = explode(";", $dados);
-			$i++;
-		}
-
-		fclose($co);
-
-		return $prod;
+	function destroy(){
+		session_destroy();
 	}
 
 	function prodDados($name, $desc, $price, $cat, $file){
 
-		$_SESSION['prodName'] = $name;
+		$_SESSION['prodNome'] = $name;
 		$_SESSION['prodDesc'] = $desc;
 		$_SESSION['prodPrice'] = $price;
 		$_SESSION['prodFile'] = $file;
